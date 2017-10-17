@@ -103,8 +103,8 @@ class Install extends Install_Controller
             'php'     => '> 5.3.x',
             'mysql'   => '> 5.x.x',
             'image'   => 'gd>2.0/imagick6.x',
-            'gd'      => '> 2.0',
-            'imagick' => '> 6.0',
+            'gd'      => '>2.0',
+            'imagick' => '>6.0',
             'upload'  => '> 2M',
             'space'   => '> 50M'
         );
@@ -129,14 +129,15 @@ class Install extends Install_Controller
         }
         if (function_exists('gd_info')) {
             $gdinfo = gd_info();
+            // fix gd version info like 'bundled (2.1.0 compatible)'
             $image = $gdinfo['GD Version'];
             $image = trim($image,"ABCDEFGHIGKLMNOPQRSTUVWXYZabcdefghigklmnopqrstuvwxyz() \t\n\r\0\x0B");
-            $image_isok = version_compare($lowestEnvironment['gd'], $image) < 0 ? false : true;
+            $image_isok = version_compare($image,$lowestEnvironment['gd']) < 0 ? false : true;
         } else if(class_exists("Imagick")){
             $versioninfo = Imagick::getVersion();
             $versionname = $versioninfo['versionString'];
-            $image = trim($image,"ABCDEFGHIGKLMNOPQRSTUVWXYZabcdefghigklmnopqrstuvwxyz() \t\n\r\0\x0B");
-            $image_isok = version_compare($lowestEnvironment['imagick'], $image) < 0 ? false : true;
+            $image = trim($versionname,"ABCDEFGHIGKLMNOPQRSTUVWXYZabcdefghigklmnopqrstuvwxyz() \t\n\r\0\x0B");
+            $image_isok = version_compare($image,$lowestEnvironment['imagick']) < 0 ? false : true;
         } else {
             $image = 'unknow';
             $image_isok = false;
