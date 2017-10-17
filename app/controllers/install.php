@@ -130,11 +130,12 @@ class Install extends Install_Controller
         if (function_exists('gd_info')) {
             $gdinfo = gd_info();
             $image = $gdinfo['GD Version'];
+            $image = trim($image,"ABCDEFGHIGKLMNOPQRSTUVWXYZabcdefghigklmnopqrstuvwxyz() \t\n\r\0\x0B");
             $image_isok = version_compare($lowestEnvironment['gd'], $image) < 0 ? false : true;
         } else if(class_exists("Imagick")){
             $versioninfo = Imagick::getVersion();
             $versionname = $versioninfo['versionString'];
-            $image = explode(" ", $versionname)[1];
+            $image = trim($image,"ABCDEFGHIGKLMNOPQRSTUVWXYZabcdefghigklmnopqrstuvwxyz() \t\n\r\0\x0B");
             $image_isok = version_compare($lowestEnvironment['imagick'], $image) < 0 ? false : true;
         } else {
             $image = 'unknow';
