@@ -67,12 +67,12 @@ class Install extends Install_Controller
      */
     private function _getEnvironmentItems() {
         return array(
-            'os' => '操作系统',
-            'php' => 'PHP版本',
-            'mysql' => 'Mysql版本（client）',
-            'gd' => 'GD图像库',
+            'os'     => '操作系统',
+            'php'    => 'PHP版本',
+            'mysql'  => 'Mysql版本（client）',
+            'image'     => '图像库',
             'upload' => '附件上传',
-            'space' => '磁盘空间'
+            'space'  => '磁盘空间'
         );
     }
 
@@ -86,7 +86,7 @@ class Install extends Install_Controller
             'os' => '不限制',
             'php' => '5.1.6',
             'mysql' => '4.1',
-            'gd' => '2.0',
+            'image' => 'gd2.0/imagick6.x',
             'upload' => '不限制',
             'space' => '50M'
         );
@@ -99,12 +99,14 @@ class Install extends Install_Controller
      */
     private function _getRecommendEnvironment() {
         return array(
-            'os' => 'Linux',
-            'php' => '> 5.3.x',
-            'mysql' => '> 5.x.x',
-            'gd' => '> 2.0',
-            'upload' => '> 2M',
-            'space' => '> 50M'
+            'os'      => 'Linux',
+            'php'     => '> 5.3.x',
+            'mysql'   => '> 5.x.x',
+            'image'   => 'gd>2.0/imagick6.x',
+            'gd'      => '> 2.0',
+            'imagick' => '> 6.0',
+            'upload'  => '> 2M',
+            'space'   => '> 50M'
         );
     }
 
@@ -127,30 +129,35 @@ class Install extends Install_Controller
         }
         if (function_exists('gd_info')) {
             $gdinfo = gd_info();
-            $gd = $gdinfo['GD Version'];
-            $gd_isok = version_compare($lowestEnvironment['gd'], $gd) < 0 ? false : true;
+            $image = $gdinfo['GD Version'];
+            $image_isok = version_compare($lowestEnvironment['gd'], $image) < 0 ? false : true;
+        } else if(class_exists("Imagick")){
+            $versioninfo = Imagick::getVersion();
+            $versionname = $versioninfo['versionString'];
+            $image = explode(" ", $versionname)[1];
+            $image_isok = version_compare($lowestEnvironment['imagick'], $image) < 0 ? false : true;
         } else {
-            $gd = 'unknow';
-            $gd_isok = false;
+            $image = 'unknow';
+            $image_isok = false;
         }
         $upload = ini_get('file_uploads') ? ini_get('upload_max_filesize') : 'unknow';
         $space = floor(@disk_free_space(FCPATH) / (1024 * 1024));
         $space = $space ? $space . 'M': 'unknow';
 
         return array(
-            'os' => PHP_OS,
-            'php' => phpversion(),
-            'mysql' => $mysql,
-            'gd' => $gd,
+            'os'     => PHP_OS,
+            'php'    => phpversion(),
+            'mysql'  => $mysql,
+            'image'  => $image,
             'upload' => $upload,
-            'space' => $space,
+            'space'  => $space,
 
-            'os_isok' => true,
-            'php_isok' => version_compare(phpversion(), $lowestEnvironment['php']) < 0 ? false : true,
-            'mysql_isok' => $mysql_isok,
-            'gd_isok' => $gd_isok,
+            'os_isok'     => true,
+            'php_isok'    => version_compare(phpversion(), $lowestEnvironment['php']) < 0 ? false : true,
+            'mysql_isok'  => $mysql_isok,
+            'image_isok'     => $image_isok,
             'upload_isok' => intval($upload) >= intval($lowestEnvironment['upload']) ? true : false,
-            'space_isok' => intval($space) >= intval($lowestEnvironment['space']) ? true : false
+            'space_isok'  => intval($space) >= intval($lowestEnvironment['space']) ? true : false
         );
     }
 

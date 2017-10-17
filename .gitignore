@@ -5,3 +5,4 @@ data/
 /themes/light
 *.cache
 *.swp
+*.DS_Store
