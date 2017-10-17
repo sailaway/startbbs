@@ -83,12 +83,14 @@ class Install extends Install_Controller
      */
     private function _getLowestEnvironment() {
         return array(
-            'os' => '不限制',
-            'php' => '5.1.6',
-            'mysql' => '4.1',
-            'image' => 'gd2.0/imagick6.x',
-            'upload' => '不限制',
-            'space' => '50M'
+            'os'      => '不限制',
+            'php'     => '5.1.6',
+            'mysql'   => '4.1',
+            'image'   => 'gd2.0/imagick6.x',
+            'gd'      => '2.0',
+            'imagick' => '6.0',
+            'upload'  => '不限制',
+            'space'   => '50M'
         );
     }
 
@@ -102,7 +104,7 @@ class Install extends Install_Controller
             'os'      => 'Linux',
             'php'     => '> 5.3.x',
             'mysql'   => '> 5.x.x',
-            'image'   => 'gd>2.0/imagick6.x',
+            'image'   => 'gd>2.0/imagick>6.0',
             'gd'      => '>2.0',
             'imagick' => '>6.0',
             'upload'  => '> 2M',
