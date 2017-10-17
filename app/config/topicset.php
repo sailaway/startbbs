@@ -3,8 +3,8 @@
 $config = array (
   'comment_order' => 'desc',
   'is_approve' => 'off',
-  'per_page_num' => '20',
-  'home_page_num' => '20',
+  'per_page_num' => '50',
+  'home_page_num' => '50',
   'timespan' => '10',
   'words_limit' => '8000',
 );

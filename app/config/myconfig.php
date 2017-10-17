@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 $config = array (
-  'site_name' => '智眼信息BBS- 技术研发交流微社区',
+  'site_name' => '智眼信息BBS-技术交流外包社区',
   'index_page' => 'index.php',
   'show_captcha' => 'on',
   'site_close' => 'on',

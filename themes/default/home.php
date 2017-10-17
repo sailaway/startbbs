@@ -79,7 +79,7 @@
 				    </div>
 				    <div class="panel-body">
 				        <ul class="list-unstyled">
-					        <li style="width:0; height:0; overflow:hidden;"><a href="http://www.startbbs.com" target="_blank">StartBBS</a></li>
+					        <li style="width:0; height:0; overflow:hidden;"><a href="#" target="_blank">智眼信息BBS</a></li>
 							<?php if($links){?>
 							<?php foreach($links as $v){?>
 							<?php if($v['is_hidden']==0){?>

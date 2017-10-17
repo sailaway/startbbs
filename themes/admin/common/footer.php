@@ -1,9 +1,9 @@
 <footer>
 	<div class="container">
 		<div class="row">
-<p>&copy; 2013 StartBBS Inc, Some rights reserved.</p>
+<p>&copy; 2017 智眼信息 Inc.</p>
 <p>Powered by<a href="<?php echo $this->config->item('sys_url');?>" class="text-muted" target="_blank"><?php echo $this->config->item('sys_name');?></a>
-<?php echo $this->config->item('sys_version');?>  <?php echo $settings['site_stats']?>-
+<?php echo $this->config->item('sys_version');?>  <?php echo $settings['site_stats']?>
 <p>页面执行时间:  {elapsed_time}s</p>
 		</div>
 	</div>
