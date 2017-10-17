@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 $config = array (
-  'site_name' => 'StartBBS- 开源微社区-烧饼bbs',
+  'site_name' => '智眼信息BBS- 技术研发交流微社区',
   'index_page' => 'index.php',
   'show_captcha' => 'on',
   'site_close' => 'on',
@@ -10,7 +10,7 @@ $config = array (
   'version' => false,
   'static' => 'white',
   'themes' => 'default',
-  'logo' => 'Start<span class=\'green\'>BBS</span>',
+  'logo' => '智眼信息<span class=\'green\'>BBS</span>',
   'auto_tag' => 'on',
-  'encryption_key' => '3a5a39e215fc2c9d83ec4f7c2ccb38a8',
+  'encryption_key' => '5c7e41fb0ca13ba3398800ebc6491596',
 );

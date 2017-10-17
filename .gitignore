@@ -4,5 +4,7 @@ uploads
 data/
 /themes/light
 *.cache
+*.bake
 *.swp
 *.DS_Store
+logs/
